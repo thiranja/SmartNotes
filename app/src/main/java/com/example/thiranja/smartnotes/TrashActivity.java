@@ -12,6 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 public class TrashActivity extends AppCompatActivity {
@@ -81,6 +84,10 @@ public class TrashActivity extends AppCompatActivity {
                 return true;
             }
         });*/
+
+        AdView homeAdview = (AdView) findViewById(R.id.home_banner_adview);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        homeAdview.loadAd(adRequest);
     }
 
     @Override
