@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Smart Notes</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="view_ab_delete">Delete</string>
+    <string name="view_ab_update">Update</string>
+    <string name="home_ab_add">Add</string>
+    <string name="add_ab_reminder">Reminder</string>
+    <string name="add_ab_send">Send</string>
+    <string name="add_ab_discard">Discard</string>
+    <string name="add_ab_save">Save</string>
+    <string name="view_ab_reminder">Reminder</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="search_notes">Search notes</string>
+
+
+    <string-array name="sort_array">
+        <item>Sort by Created Date</item>
+        <item>Sort by Modified Date</item>
+        <item>Sort Alphabatically</item>
+    </string-array>
+
+</resources>

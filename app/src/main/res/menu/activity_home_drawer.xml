@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_notes"
+            android:icon="@mipmap/ic_note_black_36dp"
+            android:title="Notes" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@mipmap/ic_search_black_36dp"
+            android:title="Search" />
+        <item
+            android:id="@+id/nav_trash"
+            android:icon="@mipmap/ic_brush_black_36dp"
+            android:title="Trash" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@mipmap/ic_settings_black_36dp"
+            android:title="Settings" />
+    </group>
+
+    <item android:title="Support Us">
+        <menu>
+            <item
+                android:title="Contact Us"
+                android:id="@+id/nav_contact"
+                android:icon="@mipmap/ic_contact_mail_black_36dp"/>
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@mipmap/ic_star_rate_black_18dp"
+                android:title="Rate App" />
+            <item
+                android:id="@+id/nav_like"
+                android:icon="@mipmap/ic_thumb_up_black_36dp"
+                android:title="Like Us" />
+        </menu>
+    </item>
+
+</menu>

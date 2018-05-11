@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "361073857887",
+    "firebase_url": "https://smartnotes-8ad63.firebaseio.com",
+    "project_id": "smartnotes-8ad63",
+    "storage_bucket": "smartnotes-8ad63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361073857887:android:0bddbdb15ab26241",
+        "android_client_info": {
+          "package_name": "com.example.thiranja.smartnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361073857887-b6knjs83bngjleo33uqs7anm3t0igihq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfcgrDlp1feooAyEpLHMD0rW10eKCmZeg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

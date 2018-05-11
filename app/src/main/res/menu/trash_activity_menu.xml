@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/home_ab_add"
+        android:id="@+id/trash_ab_add"
+        android:icon="@mipmap/ic_note_add_black_36dp"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/trash_ab_sync"
+        android:title="Sync"
+        android:icon="@mipmap/ic_sync_black_18dp"
+        app:showAsAction="never"/>
+
+
+</menu>

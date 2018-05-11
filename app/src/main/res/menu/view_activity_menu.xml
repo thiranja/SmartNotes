@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/view_ab_update"
+        android:title="@string/view_ab_update"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/view_ab_delete"
+        android:title="@string/view_ab_delete"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/view_ab_send"
+        android:title="Send"
+        app:showAsAction="never"/>
+
+    <!--app:actionProviderClass="android.widget.ShareActionProvider"-->
+    <item
+        android:title="@string/view_ab_reminder"
+        android:id="@+id/view_ab_reminder"
+        app:showAsAction="never"/>
+
+</menu>
