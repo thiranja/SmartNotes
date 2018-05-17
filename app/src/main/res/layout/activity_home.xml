@@ -9,7 +9,9 @@
 
 
 
-
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,16 +40,11 @@
 
     </com.google.android.gms.ads.AdView>
 
-    <Button
-        android:id="@+id/addbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add" />
-
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sort_spinner" />
+        android:id="@+id/sort_spinner"
+        android:layout_margin="8dp"/>
 
     <ListView
         android:layout_width="match_parent"
@@ -59,6 +56,17 @@
 
 </LinearLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:padding="10dp"
+        app:srcCompat="@mipmap/ic_note_add_black_36dp" />
+
+</android.support.design.widget.CoordinatorLayout>
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -68,6 +76,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_home_drawer" />
-
 
 </android.support.v4.widget.DrawerLayout>

@@ -162,9 +162,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
         boolean isMoved = cursor.moveToLast();
         ArrayList<Note> notes = new ArrayList<>();
+        boolean isListEmpty = true;
         if(isMoved) {
             do {
                 if (cursor.getInt(3) == 0) {
+                    isListEmpty = false;
                     Note note = new Note();
 
                     note.setId(cursor.getString(0));
@@ -180,7 +182,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
             cursor.close();
             db.close();
-        }else{
+        }if(isListEmpty){
             Note guideNote = new Note();
             guideNote.setDate();
             guideNote.setId("zzz");
@@ -200,9 +202,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
         boolean isMoved = cursor.moveToLast();
         ArrayList<Note> notes = new ArrayList<>();
+        boolean isListEmpty = true;
         if(isMoved) {
             do {
                 if (cursor.getInt(3) == 1) {
+                    isListEmpty = false;
                     Note note = new Note();
 
                     note.setId(cursor.getString(0));
@@ -218,13 +222,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
             cursor.close();
             db.close();
-        }else{
+        }if(isListEmpty){
             Note guideNote = new Note();
             guideNote.setDate();
             guideNote.setId("zzz");
-            guideNote.setName("<-- Empty -->");
+            guideNote.setName("<-- Nothing In Trash -->");
             guideNote.setNote("Nothing want to set here");
-            guideNote.setPass(0);
+            guideNote.setPass(1);
             notes.add(guideNote);
         }
         return notes;

@@ -3,6 +3,7 @@ package com.example.thiranja.smartnotes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -47,11 +49,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // Setting up the buttens
 
-        Button addbtn = findViewById(R.id.addbtn);
+        FloatingActionButton fabAddNote = findViewById(R.id.fab_home);
 
-        // setting new note activity to addbtn
-
-        addbtn.setOnClickListener(new View.OnClickListener() {
+        fabAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // setting the action intent of add new activity
@@ -162,9 +162,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-        AdView homeAdview = (AdView) findViewById(R.id.home_banner_adview);
+        final AdView homeAdview = (AdView) findViewById(R.id.home_banner_adview);
         AdRequest adRequest = new AdRequest.Builder().build();
         homeAdview.loadAd(adRequest);
+        homeAdview.setAdListener(new AdListener(){
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                homeAdview.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                homeAdview.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override

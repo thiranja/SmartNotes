@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -85,9 +86,22 @@ public class TrashActivity extends AppCompatActivity {
             }
         });*/
 
-        AdView homeAdview = (AdView) findViewById(R.id.home_banner_adview);
+        final AdView trashAdview = (AdView) findViewById(R.id.trash_banner_adview);
         AdRequest adRequest = new AdRequest.Builder().build();
-        homeAdview.loadAd(adRequest);
+        trashAdview.loadAd(adRequest);
+        trashAdview.setAdListener(new AdListener(){
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                trashAdview.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                trashAdview.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -104,23 +118,27 @@ public class TrashActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         TextView idtv = info.targetView.findViewById(R.id.rowidtv);
         String idStr = idtv.getText().toString();
+
         switch (item.getItemId()){
             case R.id.trash_cm_delete:
                 if(!(idStr.equalsIgnoreCase("zzz"))) {
                     DeleteDialog alertDialog = DeleteDialog.newInstance(idStr);
                     alertDialog.show(getFragmentManager(), "fragment_alert");
+
+                    trashlist.remove(info.position);
+                    customArrayAdapter.notifyDataSetChanged();
                 }
-                trashlist.remove(info.position);
-                customArrayAdapter.notifyDataSetChanged();
                 return true;
             case R.id.trash_cm_recover:
-                boolean isRecover = helper.recoverFromTrash(idStr);
-                if(isRecover){
-                    trashlist.remove(info.position);
-                    Toast.makeText(TrashActivity.this, "Recovered", Toast.LENGTH_SHORT).show();
-                    customArrayAdapter.notifyDataSetChanged();
-                }else{
-                    Toast.makeText(TrashActivity.this, "Not Recovered", Toast.LENGTH_SHORT).show();
+                if (idStr != "zzz") {
+                    boolean isRecover = helper.recoverFromTrash(idStr);
+                    if (isRecover) {
+                        trashlist.remove(info.position);
+                        Toast.makeText(TrashActivity.this, "Recovered", Toast.LENGTH_SHORT).show();
+                        customArrayAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(TrashActivity.this, "Not Recovered", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return true;
             default:
