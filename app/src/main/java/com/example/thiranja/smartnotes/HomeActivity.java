@@ -38,9 +38,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     Spinner sortSpinner;
 
-    ArrayList<Note> notelist;
+    public static ArrayList<Note> notelist;
 
-    CustomArrayAdapter customArrayAdapter;
+    public static CustomArrayAdapter homeCustomArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +70,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         notelist = helper.getNoteArray();
 
-        customArrayAdapter = new CustomArrayAdapter(this,notelist);
-        customArrayAdapter.notifyDataSetChanged();
+        homeCustomArrayAdapter = new CustomArrayAdapter(this,notelist);
 
-        noteList.setAdapter(customArrayAdapter);
+        noteList.setAdapter(homeCustomArrayAdapter);
 
         // Registering the listview for a context menu
         registerForContextMenu(noteList);
@@ -91,21 +90,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
-        /*noteList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView idtv = view.findViewById(R.id.rowidtv);
-                String idStr = idtv.getText().toString();
-                if(!(idStr.equalsIgnoreCase("zzz"))) {
-                    DeleteDialog alertDialog = DeleteDialog.newInstance(idStr);
-                    alertDialog.show(getFragmentManager(), "fragment_alert");
-                }
-                // if return false normal click also execute so need to
-                // retrun ture to only execute long click..
-                return true;
-            }
-        });*/
+        // Even though we previesly used list view on long lick listner
+        // now we are using on create context menu instead
 
         homeTB = (Toolbar) findViewById(R.id.home_ab);
         setSupportActionBar(homeTB);
@@ -149,7 +135,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     notelist.addAll(newNotes);
                     // No sort is needed here
                 }
-                customArrayAdapter.notifyDataSetChanged();
+                homeCustomArrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -179,6 +165,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        notelist.clear();
+        notelist.addAll(helper.getNoteArray());
+        homeCustomArrayAdapter.notifyDataSetChanged();
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

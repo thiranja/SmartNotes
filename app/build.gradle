@@ -27,11 +27,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // Add this line firebase services
-    implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
     // Adding firebase messaging dependencies
-    implementation 'com.google.firebase:firebase-messaging:12.0.1'
+    implementation 'com.google.firebase:firebase-messaging:15.0.2'
     // firebase dependencie for admob adds
-    implementation 'com.google.firebase:firebase-ads:12.0.1'
+    implementation 'com.google.firebase:firebase-ads:15.0.0'
+    // firebase dependencie for ML algorithms
+    implementation 'com.google.firebase:firebase-ml-vision:15.0.0'
     // This support implementation is needed for the notification builder
     implementation "com.android.support:support-compat:26.1.0"
 

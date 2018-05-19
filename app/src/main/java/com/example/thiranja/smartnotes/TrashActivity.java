@@ -18,14 +18,17 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
+import static com.example.thiranja.smartnotes.HomeActivity.homeCustomArrayAdapter;
+import static com.example.thiranja.smartnotes.HomeActivity.notelist;
+
 public class TrashActivity extends AppCompatActivity {
 
 
     Toolbar trashTB;
     DBHelper helper = new DBHelper(this);
 
-    ArrayList<Note> trashlist;
-    CustomArrayAdapter customArrayAdapter;
+    public static ArrayList<Note> trashlist;
+    public static CustomArrayAdapter trashCustomArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +48,13 @@ public class TrashActivity extends AppCompatActivity {
 
         trashlist = helper.getTrashNoteArray();
 
-        customArrayAdapter = new CustomArrayAdapter(this,trashlist);
-        customArrayAdapter.notifyDataSetChanged();
+        trashCustomArrayAdapter = new CustomArrayAdapter(this,trashlist);
+        trashCustomArrayAdapter.notifyDataSetChanged();
 
 
         //registering context menu with trashlist
         registerForContextMenu(trashList);
-        trashList.setAdapter(customArrayAdapter);
+        trashList.setAdapter(trashCustomArrayAdapter);
 
         trashList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -104,6 +107,14 @@ public class TrashActivity extends AppCompatActivity {
         });
     }
 
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        trashlist.clear();
+        trashlist.addAll(helper.getTrashNoteArray());
+        trashCustomArrayAdapter.notifyDataSetChanged();
+    }*/
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -125,8 +136,8 @@ public class TrashActivity extends AppCompatActivity {
                     DeleteDialog alertDialog = DeleteDialog.newInstance(idStr);
                     alertDialog.show(getFragmentManager(), "fragment_alert");
 
-                    trashlist.remove(info.position);
-                    customArrayAdapter.notifyDataSetChanged();
+                    //trashlist.remove(info.position);
+                    //customArrayAdapter.notifyDataSetChanged();
                 }
                 return true;
             case R.id.trash_cm_recover:
@@ -135,7 +146,10 @@ public class TrashActivity extends AppCompatActivity {
                     if (isRecover) {
                         trashlist.remove(info.position);
                         Toast.makeText(TrashActivity.this, "Recovered", Toast.LENGTH_SHORT).show();
-                        customArrayAdapter.notifyDataSetChanged();
+                        trashCustomArrayAdapter.notifyDataSetChanged();
+                        notelist.clear();
+                        notelist.addAll(helper.getNoteArray());
+                        homeCustomArrayAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(TrashActivity.this, "Not Recovered", Toast.LENGTH_SHORT).show();
                     }

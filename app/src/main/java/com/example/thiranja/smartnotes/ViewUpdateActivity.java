@@ -2,6 +2,7 @@ package com.example.thiranja.smartnotes;
 
 //import android.app.FragmentManager;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -40,6 +41,19 @@ public class ViewUpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_update);
+
+        // Making the fab on action even on view
+
+        FloatingActionButton fabImageNote = findViewById(R.id.fab_view);
+
+        fabImageNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Here comes the code for ml image text ditector
+                // For now a toast
+                Toast.makeText(ViewUpdateActivity.this, "Fab works Anyway", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Setting the name and the notes edittext with the java class
 

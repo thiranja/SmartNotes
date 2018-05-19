@@ -2,6 +2,7 @@ package com.example.thiranja.smartnotes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -31,6 +32,18 @@ public class AddNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
 
+        // Adding fab for the action
+
+        FloatingActionButton fabImageNote = findViewById(R.id.fab_add);
+
+        fabImageNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Here comes the code for ml image text ditector
+                // For now a toast
+                Toast.makeText(AddNoteActivity.this, "Fab works", Toast.LENGTH_SHORT).show();
+            }
+        });
         // mapping the layout with code
 
         Button savebtn = (Button)findViewById(R.id.savebtn);

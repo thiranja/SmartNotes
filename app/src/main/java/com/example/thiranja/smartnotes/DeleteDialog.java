@@ -10,6 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import static com.example.thiranja.smartnotes.HomeActivity.homeCustomArrayAdapter;
+import static com.example.thiranja.smartnotes.HomeActivity.notelist;
+import static com.example.thiranja.smartnotes.TrashActivity.trashCustomArrayAdapter;
+import static com.example.thiranja.smartnotes.TrashActivity.trashlist;
+
 public class DeleteDialog extends DialogFragment {
 
     boolean trashed;
@@ -70,22 +75,28 @@ public class DeleteDialog extends DialogFragment {
                     isDelete = helper.deleteNote(id);
                     if(isDelete){
                         Toast.makeText(getActivity(), "Note Deleted", Toast.LENGTH_SHORT).show();
+                        trashlist.clear();
+                        trashlist.addAll(helper.getTrashNoteArray());
+                        trashCustomArrayAdapter.notifyDataSetChanged();
                     }else{
                         Toast.makeText(getActivity(), "Not Deleted", Toast.LENGTH_SHORT).show();
                     }
-                    //Intent home = new Intent("android.intent.action.TRASH");
-                    //home.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    //startActivity(home);
+                    //Intent trash = new Intent("android.intent.action.TRASH");
+                    //trash.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    //startActivity(trash);
 
                 }else{
                     isDelete = helper.sendToTrash(id);
                     if(isDelete){
                         Toast.makeText(getActivity(), "Note Deleted", Toast.LENGTH_SHORT).show();
+                        notelist.clear();
+                        notelist.addAll(helper.getNoteArray());
+                        homeCustomArrayAdapter.notifyDataSetChanged();
                     }else{
                         Toast.makeText(getActivity(), "Not Deleted", Toast.LENGTH_SHORT).show();
                     }
                     //Intent home = new Intent("android.intent.action.HOME");
-                    //home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    //home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     //startActivity(home);
                 }
             }
