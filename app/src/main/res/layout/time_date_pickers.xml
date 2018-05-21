@@ -9,6 +9,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+            </DatePicker>
 
             <TimePicker
                 android:id="@+id/time_picker"
@@ -17,15 +23,6 @@
                 android:paddingBottom="@dimen/date_picker_padding">
 
             </TimePicker>
-
-
-
-            <DatePicker
-                android:id="@+id/date_picker"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-            </DatePicker>
 
 
         </LinearLayout>

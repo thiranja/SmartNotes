@@ -71,7 +71,7 @@ public class ViewUpdateActivity extends AppCompatActivity {
 
         final String idStr = bundle.getString("id");
 
-        this.id = idStr;
+        this.id = bundle.getString("id");
         // Getting the note name from the database
         String name = helper.getName(idStr);;
         String note  = helper.getNote(idStr);
@@ -220,6 +220,7 @@ public class ViewUpdateActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
         if (isChangesSaved == true) {
             Intent home = new Intent("android.intent.action.HOME");
             home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

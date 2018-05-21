@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -80,8 +81,9 @@ public class ReminderDialog extends DialogFragment {
                 }
 
                 Intent viewUpdate = new Intent("android.intent.action.UPDATE");
-                viewUpdate.putExtra("id",id);
-                viewUpdate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                viewUpdate.putExtra("id","Thiranja");
+                Toast.makeText(getActivity(), id, Toast.LENGTH_SHORT).show();
+                //viewUpdate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                 PendingIntent intent = PendingIntent.getActivity(getActivity(), 0, viewUpdate, 0);
 
@@ -109,11 +111,12 @@ public class ReminderDialog extends DialogFragment {
                         .setVibrate(new long[]{1000,1000,1000,1000,1000});
 
                 Notification notification = notify.build();
-                //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getActivity());
-                //notificationManager.notify(1,notify.build());
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getActivity());
+                notificationManager.notify(1,notify.build());
                 int notificationId = 1;
 
                 Intent notificationIntent = new Intent(getActivity(),AlarmReceiver.class);
+                notificationIntent.putExtra("id",id);
                 notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, notificationId);
                 notificationIntent.putExtra(AlarmReceiver.NOTIFICATION, notification);
                 //notificationIntent.setFlags(Integer.parseInt(Intent.ACTION_BOOT_COMPLETED));
@@ -122,9 +125,13 @@ public class ReminderDialog extends DialogFragment {
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
                 AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 5000, pendingIntent);
+                long delay = calendar.getTimeInMillis() - SystemClock.elapsedRealtime();
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
-                Toast.makeText(getActivity(), "Reminder Set", Toast.LENGTH_SHORT).show();
+                StringBuilder sb = new StringBuilder();
+                sb.append(delay);
+
+                //Toast.makeText(getActivity(), sb.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
